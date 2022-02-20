@@ -1,0 +1,13 @@
+def shift_with_trans_table(text, size_shift=2):
+    
+    import string
+    alphlist = list(string.ascii_lowercase)
+    
+    if size_shift >= 26:
+        size_shift = size_shift % 26
+    
+    shifted_alphlist = alphlist[size_shift:] + alphlist[:size_shift]
+    
+    trans_table = text.maketrans(str(alphlist), str(shifted_alphlist))
+    
+    return text.translate(trans_table)
