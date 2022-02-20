@@ -1,0 +1,14 @@
+def shift_with_dictionary(text, size_shift=2):
+
+    dictionary = {}
+
+    import string
+    alphlist = list(string.ascii_lowercase)
+    
+    for a in alphlist:
+        if alphlist.index(a) + size_shift > 25:
+            dictionary[ord(a)] = alphlist[(alphlist.index(a) + size_shift) % 26]
+        else:
+            dictionary[ord(a)] = alphlist[alphlist.index(a)+ size_shift]
+
+    return text.translate(dictionary)
