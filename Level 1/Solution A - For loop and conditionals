@@ -7,6 +7,7 @@ text = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmg
 #The below function replaces each letter of plain text with a letter n places down the alphabet (default required for this solution is 2). Spacing and punctuation are preserved.
 
 def lettershifter(text, size_shift=2):
+    
     import string
     alphlist = list(string.ascii_lowercase)
     
@@ -14,16 +15,15 @@ def lettershifter(text, size_shift=2):
     
     for t in text:
         if t in alphlist:
-            if alphlist.index(t) + size_shift == 26:
-                newtext += t.replace(t, 'a')
-            elif alphlist.index(t) + size_shift == 27:
-                newtext += t.replace(t, 'b')
+            if alphlist.index(t) + size_shift > 25:
+            #For cases in which the shift extends beyond the end of the alphabet and/or shift provided is very large
+                newtext += t.replace(t, alphlist[(alphlist.index(t) + size_shift) % 26])
             else:
                 newtext += t.replace(t, alphlist[alphlist.index(t)+ size_shift])
         else:
             newtext += t
             
-   return newtext.capitalize()
+    return newtext.capitalize()
     
     
     
